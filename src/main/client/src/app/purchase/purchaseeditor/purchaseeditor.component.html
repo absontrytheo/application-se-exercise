@@ -5,3 +5,4 @@
   <input type="date" placeholder="buyDate" name="buyDate" [(ngModel)]="purchase.buyDate">
   <button type="submit" class="btn btn-success" (click)="createOrUpdatePurchase()">Submit</button>
 </form>
+<p *ngIf="created">Entry was created</p>

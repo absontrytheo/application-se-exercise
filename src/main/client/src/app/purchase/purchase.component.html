@@ -21,6 +21,7 @@
     <td>{{purchase.productName}}</td>
     <td>{{purchase.priceInCents}}</td>
     <td>{{purchase.buyDate}}</td>
+    <td><button (click)="deletePurchase(purchase.id)">Delete this entry</button></td>
   </tr>
 </table>
 

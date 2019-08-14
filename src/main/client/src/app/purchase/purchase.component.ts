@@ -21,6 +21,14 @@ export class PurchaseComponent implements OnInit {
   ngOnInit() {
   }
 
+  deletePurchase(id: number) {
+    this.httpClient.delete('api/purchases/' + id)
+      .subscribe(resp => {
+        // NOTE: also here error handling would be nice
+        this.onLoadPurchasesButtonClick();
+      });
+  }
+
   onLoadPurchasesButtonClick() {
     this.httpClient.get<Purchase[]>("api/purchases")
     //NOTE: ideally, we should have an error handler here, which we left away for simplicity

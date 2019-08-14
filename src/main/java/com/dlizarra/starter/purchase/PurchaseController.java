@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.dlizarra.starter.role.RoleName;
 
@@ -33,6 +34,11 @@ public class PurchaseController {
     @RequestMapping(value = "/purchases", method = RequestMethod.POST)
     public PurchaseDto create(@RequestBody PurchaseDto purchase) {
         return purchaseService.createPurchase(purchase);
+    }
+
+    @RequestMapping(value = "/purchases/{id}", method = RequestMethod.DELETE)
+    public void delete(@PathVariable Integer id) {
+        purchaseService.deletePurchase(id);
     }
 
 }

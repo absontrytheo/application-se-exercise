@@ -16,6 +16,7 @@ export class PurchaseEditorComponent implements OnInit {
   }
 
   loadedAt: string;
+  created: boolean;
 
   ngOnInit() {
     if (!this.purchase) {
@@ -33,6 +34,8 @@ export class PurchaseEditorComponent implements OnInit {
     //NOTE: ideally, we should have an error handler here, which we left away for simplicity
       .subscribe(resp => {
         this.purchase = resp;
+        this.created = true;
+
       });
 
     this.loadedAt = new Date().toLocaleTimeString();
