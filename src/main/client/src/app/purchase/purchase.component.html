@@ -23,11 +23,27 @@
     <td *ngIf="!isPurchaseEditable[purchase.id]">{{purchase.buyDate}}</td>
     <app-purchase-editor *ngIf="isPurchaseEditable[purchase.id]" [purchase]="purchase"></app-purchase-editor>
 
-    <td><button (click)="switchPurchaseEditable(purchase.id)">Make this entry editable or hide edit form</button></td>
-    <td><button (click)="deletePurchase(purchase.id)">Delete this entry</button></td>
+    <td>
+      <button (click)="switchPurchaseEditable(purchase.id)">Make this entry editable or hide edit form</button>
+    </td>
+    <td>
+      <button (click)="deletePurchase(purchase.id)">Delete this entry</button>
+    </td>
   </tr>
   <tr *ngIf="purchases">
     <td>Total: {{getTotalPurchaseValue()}} cents</td>
+  </tr>
+
+</table>
+<table>
+  <th>Here should the buyerName to buyersum thing load, but for some reason angulars "let entry of map | keyvalue" is not working properly</th>
+  <tr>
+    <td>buyerName</td>
+    <td>priceInCents</td>
+  </tr>
+  <tr *ngFor="let buyerSum of sumPerBuyer | keyvalue">
+    <td>{{buyerSum.key}}</td>
+    <td>{{buyerSum.value}}</td>
   </tr>
 
 </table>

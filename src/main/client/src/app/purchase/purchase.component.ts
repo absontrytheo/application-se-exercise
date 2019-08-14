@@ -12,6 +12,7 @@ export class PurchaseComponent implements OnInit {
 
   purchases: Purchase[];
   isPurchaseEditable: Map<number, boolean>;
+  sumPerBuyer: Map<string, number>;
   loadedAt: string;
 
   newPurchaseFormIsOpen = false;
@@ -36,7 +37,17 @@ export class PurchaseComponent implements OnInit {
       .subscribe(resp => {
         this.purchases = resp;
         this.isPurchaseEditable = new Map();
-        this.purchases.forEach(purchase => this.isPurchaseEditable[purchase.id] = false);
+        this.sumPerBuyer = new Map();
+
+        this.purchases.forEach(purchase => {
+          this.isPurchaseEditable[purchase.id] = false;
+          if (purchase.buyerName in this.sumPerBuyer) {
+            this.sumPerBuyer[purchase.buyerName] = this.sumPerBuyer[purchase.buyerName] + purchase.priceInCents;
+          } else {
+            this.sumPerBuyer[purchase.buyerName] = purchase.priceInCents;
+          }
+        });
+
       });
 
     this.loadedAt = new Date().toLocaleTimeString();
@@ -57,7 +68,8 @@ export class PurchaseComponent implements OnInit {
       return 0;
     }
   }
-  switchPurchaseEditable(id: number){
-    this.isPurchaseEditable[id] =!this.isPurchaseEditable[id];
+
+  switchPurchaseEditable(id: number) {
+    this.isPurchaseEditable[id] = !this.isPurchaseEditable[id];
   }
 }
