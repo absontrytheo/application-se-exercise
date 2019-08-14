@@ -23,6 +23,10 @@
     <td>{{purchase.buyDate}}</td>
     <td><button (click)="deletePurchase(purchase.id)">Delete this entry</button></td>
   </tr>
+  <tr *ngIf="purchases">
+    <td>Total: {{getTotalPurchaseValue()}} cents</td>
+  </tr>
+
 </table>
 
 <p *ngIf="purchases">

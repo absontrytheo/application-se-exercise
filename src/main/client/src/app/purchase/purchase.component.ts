@@ -46,4 +46,12 @@ export class PurchaseComponent implements OnInit {
   switchNewPurchaseForm() {
     this.newPurchaseFormIsOpen = !this.newPurchaseFormIsOpen;
   }
+
+  getTotalPurchaseValue(): number {
+    if (this.purchases) {
+      return this.purchases.map(purchase => purchase.priceInCents).reduce((a, b) => a + b, 0)
+    } else {
+      return 0;
+    }
+  }
 }
