@@ -13,6 +13,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 
 import java.text.ParseException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -54,8 +55,12 @@ public class PurchaseServiceImpl implements PurchaseService {
     @Transactional
     @Override
     public void updatePurchase(final PurchaseDto purchase) {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Not yet implemented");
+        Purchase purchaseDataBaseObject = find(purchase.getId());
+        purchaseDataBaseObject.setBuyerName(purchase.getBuyerName());
+        purchaseDataBaseObject.setProductName(purchase.getProductName());
+        purchaseDataBaseObject.setPriceInCents(purchase.getPriceInCents());
+        purchaseDataBaseObject.setBuyDate(purchase.getBuyDate());
+        purchaseDataBaseObject.setModificationTime(LocalDateTime.now());
     }
 
     @Transactional

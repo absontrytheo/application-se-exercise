@@ -24,8 +24,7 @@ public class PurchaseController {
     @Autowired
     private PurchaseService purchaseService;
 
-    @RequestMapping(value = "/purchases" +
-            "", method = RequestMethod.GET)
+    @RequestMapping(value = "/purchases", method = RequestMethod.GET)
     public List<PurchaseDto> findAll() {
         return purchaseService.getPurchases();
     }
@@ -34,6 +33,11 @@ public class PurchaseController {
     @RequestMapping(value = "/purchases", method = RequestMethod.POST)
     public PurchaseDto create(@RequestBody PurchaseDto purchase) {
         return purchaseService.createPurchase(purchase);
+    }
+    @ResponseBody
+    @RequestMapping(value = "/purchases/{id}", method = RequestMethod.PUT)
+    public void updatePurchase(@PathVariable Integer id,@RequestBody PurchaseDto purchase) {
+        purchaseService.updatePurchase(purchase);
     }
 
     @RequestMapping(value = "/purchases/{id}", method = RequestMethod.DELETE)

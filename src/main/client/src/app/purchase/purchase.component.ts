@@ -11,6 +11,7 @@ export class PurchaseComponent implements OnInit {
 
 
   purchases: Purchase[];
+  isPurchaseEditable: Map<number, boolean>;
   loadedAt: string;
 
   newPurchaseFormIsOpen = false;
@@ -34,6 +35,8 @@ export class PurchaseComponent implements OnInit {
     //NOTE: ideally, we should have an error handler here, which we left away for simplicity
       .subscribe(resp => {
         this.purchases = resp;
+        this.isPurchaseEditable = new Map();
+        this.purchases.forEach(purchase => this.isPurchaseEditable[purchase.id] = false);
       });
 
     this.loadedAt = new Date().toLocaleTimeString();
@@ -53,5 +56,8 @@ export class PurchaseComponent implements OnInit {
     } else {
       return 0;
     }
+  }
+  switchPurchaseEditable(id: number){
+    this.isPurchaseEditable[id] =!this.isPurchaseEditable[id];
   }
 }

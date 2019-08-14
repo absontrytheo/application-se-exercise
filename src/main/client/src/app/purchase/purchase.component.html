@@ -3,7 +3,7 @@
   <button (click)="onLoadPurchasesButtonClick()"> Klick me to load purchases</button>
 </p>
 <p *ngIf="purchases">
-  We loaded the following users from the database at {{loadedPurchasesAt}}:
+  We loaded the following users from the database at {{loadedAt}}:
 </p>
 
 <table>
@@ -16,11 +16,14 @@
   </tr>
 
   <tr *ngFor="let purchase of purchases">
-    <td>{{purchase.id}}</td>
-    <td>{{purchase.buyerName}}</td>
-    <td>{{purchase.productName}}</td>
-    <td>{{purchase.priceInCents}}</td>
-    <td>{{purchase.buyDate}}</td>
+    <td *ngIf="!isPurchaseEditable[purchase.id]">{{purchase.id}}</td>
+    <td *ngIf="!isPurchaseEditable[purchase.id]">{{purchase.buyerName}}</td>
+    <td *ngIf="!isPurchaseEditable[purchase.id]">{{purchase.productName}}</td>
+    <td *ngIf="!isPurchaseEditable[purchase.id]">{{purchase.priceInCents}}</td>
+    <td *ngIf="!isPurchaseEditable[purchase.id]">{{purchase.buyDate}}</td>
+    <app-purchase-editor *ngIf="isPurchaseEditable[purchase.id]" [purchase]="purchase"></app-purchase-editor>
+
+    <td><button (click)="switchPurchaseEditable(purchase.id)">Make this entry editable or hide edit form</button></td>
     <td><button (click)="deletePurchase(purchase.id)">Delete this entry</button></td>
   </tr>
   <tr *ngIf="purchases">
