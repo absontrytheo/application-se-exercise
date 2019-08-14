@@ -14,7 +14,8 @@ export class ScratchComponent implements OnInit {
 
   loadedAt: string;
 
-  constructor( private httpClient:HttpClient) { }
+  constructor(private httpClient: HttpClient) {
+  }
 
   ngOnInit() {
   }
@@ -29,6 +30,7 @@ export class ScratchComponent implements OnInit {
 
     this.loadedAt = new Date().toLocaleTimeString();
   }
+
 
   removeUsers() {
     this.users = null;

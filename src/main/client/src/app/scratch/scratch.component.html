@@ -2,12 +2,12 @@
   Hello World!
 </p>
 <p>
-  We prepared a sample http request for you:
+  List all the users:
   <button (click)="onLoadUsersButtonClick()"> Klick me to load users</button>
 </p>
 
 <p *ngIf="users">
-    We loaded the following users from the database at {{loadedAt}}:
+  We loaded the following users from the database at {{loadedAt}}:
 </p>
 
 
@@ -19,5 +19,6 @@
 </table>
 
 <p *ngIf="users">
-  <button (click)="removeUsers()"> Clear Loaded Users </button>
+  <button (click)="removeUsers()"> Clear Loaded Users</button>
 </p>
+

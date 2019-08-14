@@ -1,0 +1,34 @@
+<p>
+  List all the purchases:
+  <button (click)="onLoadPurchasesButtonClick()"> Klick me to load purchases</button>
+</p>
+<p *ngIf="purchases">
+  We loaded the following users from the database at {{loadedPurchasesAt}}:
+</p>
+
+<table>
+  <tr *ngIf="purchases">
+    <td>id</td>
+    <td>buyerName</td>
+    <td>productName</td>
+    <td>priceInCents</td>
+    <td>buyDate</td>
+  </tr>
+
+  <tr *ngFor="let purchase of purchases">
+    <td>{{purchase.id}}</td>
+    <td>{{purchase.buyerName}}</td>
+    <td>{{purchase.productName}}</td>
+    <td>{{purchase.priceInCents}}</td>
+    <td>{{purchase.buyDate}}</td>
+  </tr>
+</table>
+
+<p *ngIf="purchases">
+  <button (click)="removePurchases()"> Clear Loaded Purchases</button>
+</p>
+
+<p>
+  <button (click)="switchNewPurchaseForm()">Open/Close purchase creation form</button>
+</p>
+<app-purchase-editor *ngIf="newPurchaseFormIsOpen"></app-purchase-editor>

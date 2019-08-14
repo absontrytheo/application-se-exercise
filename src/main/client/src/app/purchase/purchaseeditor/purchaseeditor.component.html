@@ -1,0 +1,7 @@
+<form>
+  <input type="text" placeholder="buyerName" name="buyerName" required [(ngModel)]="purchase.buyerName">
+  <input type="text" placeholder="productName" name="productName" [(ngModel)]="purchase.productName">
+  <input type="number" placeholder="priceInCents" name="priceInCents" min="1" [(ngModel)]="purchase.priceInCents">
+  <input type="date" placeholder="buyDate" name="buyDate" [(ngModel)]="purchase.buyDate">
+  <button type="submit" class="btn btn-success" (click)="createOrUpdatePurchase()">Submit</button>
+</form>
